@@ -1,5 +1,11 @@
 package com.awesomecsgroup.cs125finalproject;
 
+//Challen Slasher? Geoff's Grade Slasher?
+//Tap grades to kill student's grades
+//Score is in seconds
+//
+
+
 import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 
