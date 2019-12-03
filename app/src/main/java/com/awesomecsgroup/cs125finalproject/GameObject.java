@@ -6,5 +6,5 @@ import android.graphics.Canvas;
 public abstract class GameObject {
     Bitmap image;
 
-    abstract void draw();
+    abstract void draw(Canvas canvas);
 }
