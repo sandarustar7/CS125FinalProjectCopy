@@ -13,6 +13,7 @@ public class Square extends GameObject {
         canvas.drawRGB(250,250, 250);
         canvas.drawRect(rect, paint);
     }
+    public void draw()
     Square(Bitmap image) {
         super(image);
         paint.setColor(Color.rgb(250,0,0));
