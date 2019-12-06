@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CS125FinalProject</string>
+    <string name="app_name">Geoff Smash</string>
     <string name="Game_Title_Text">Geoff Smash</string>
     <string name="startGameButton">Start Game</string>
     <string name="Options_Text">Options</string>
