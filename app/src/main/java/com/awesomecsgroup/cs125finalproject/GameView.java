@@ -1,7 +1,13 @@
 package com.awesomecsgroup.cs125finalproject;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
+import android.graphics.BitmapFactory;
+import android.graphics.BitmapRegionDecoder;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
@@ -9,6 +15,11 @@ import android.view.SurfaceView;
 class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     RenderThread thread;
+    Square square;
+    Paint paint;
+    ValueAnimator animator = ValueAnimator.ofInt(0, 100);
+    int value;
+
     public GameView(Context ctx) {
         super(ctx);
         getHolder().addCallback(this);
@@ -17,7 +28,12 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     public void draw(Canvas canvas) {
+
         super.draw(canvas);
+        if (canvas != null) {
+            Log.d("GAME", "true!");
+            square.draw(canvas);
+        }
     }
 
     public void update() {
@@ -31,7 +47,10 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
-
+        square = new Square(BitmapFactory.decodeResource(getResources(), R.drawable.background));
+        thread.setRunning(true);
+        thread.start();
+        Log.d("GAME", "thread started!");
     }
 
     @Override

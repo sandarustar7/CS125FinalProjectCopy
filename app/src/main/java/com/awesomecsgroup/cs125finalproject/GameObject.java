@@ -7,4 +7,8 @@ public abstract class GameObject {
     Bitmap image;
 
     abstract void draw(Canvas canvas);
+
+    GameObject(Bitmap image) {
+        this.image = image;
+    }
 }
