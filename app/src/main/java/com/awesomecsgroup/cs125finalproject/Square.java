@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.util.Log;
 
 public class Square extends GameObject {
     Rect rect = new Rect(100, 100, 400, 400);
@@ -12,6 +13,9 @@ public class Square extends GameObject {
     public void draw(Canvas canvas) {
         canvas.drawRGB(250,250, 250);
         canvas.drawRect(rect, paint);
+    }
+    public void update() {
+        Log.d("Square", "update: hello");
     }
     Square(Bitmap image) {
         super(image);
