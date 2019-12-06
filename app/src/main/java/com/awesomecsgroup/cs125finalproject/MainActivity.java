@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
             Log.d(TITLE, "Start Game!");
             Intent intent = new Intent(this, GameActivity.class);
             startActivity(intent);
-            finish();
         });
         options.setOnClickListener(unused -> {
             Log.d(TITLE, "OptionsActivity");
