@@ -16,6 +16,7 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     RenderThread thread;
     Square square;
+    Background background;
     Paint paint;
     ValueAnimator animator = ValueAnimator.ofInt(0, 100);
     int value;
@@ -48,6 +49,7 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
         square = new Square(BitmapFactory.decodeResource(getResources(), R.drawable.background));
+        background = new Background(BitmapFactory.decodeResource(getResources(),R.drawable.background));
         thread.setRunning(true);
         thread.start();
         Log.d("GAME", "thread started!");

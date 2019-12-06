@@ -3,5 +3,6 @@
     <string name="Game_Title_Text">Geoff Smash</string>
     <string name="startGameButton">Start Game</string>
     <string name="Options_Text">Options</string>
-    <string name="optionsTitleText">Options</string>
+    <string name="optionsTitleText">Instructions:</string>
+    <string name="optionsInstructions">Click on the A\'s to turn them into F\'s.\nMiss any, and you lose!\nTry to last as long as you can and get a high score.</string>
 </resources>
