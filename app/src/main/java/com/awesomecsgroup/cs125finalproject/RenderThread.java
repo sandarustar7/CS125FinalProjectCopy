@@ -32,8 +32,6 @@ public class RenderThread extends Thread {
             long totalTime = 0;
             int frameCount =0;
             long targetTime = 1000/targetFPS;
-
-
             while(running) {
                 startTime = System.nanoTime();
                 canvas = null;
@@ -55,14 +53,11 @@ public class RenderThread extends Thread {
                         catch(Exception e){e.printStackTrace();}
                     }
                 }
-
                 timeMillis = (System.nanoTime() - startTime) / 1000000;
                 waitTime = targetTime-timeMillis;
-
                 try{
                     this.sleep(waitTime);
                 }catch(Exception e){}
-
                 totalTime += System.nanoTime()-startTime;
                 frameCount++;
                 if(frameCount == targetFPS)
@@ -73,7 +68,6 @@ public class RenderThread extends Thread {
                     System.out.println(averageFPS);
                 }
             }
-
         }
     public void setRunning(boolean isRunning) {
         running = isRunning;

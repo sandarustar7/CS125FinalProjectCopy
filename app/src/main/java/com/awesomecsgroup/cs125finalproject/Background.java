@@ -2,7 +2,6 @@ package com.awesomecsgroup.cs125finalproject;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Matrix;
 import android.graphics.Rect;
 
 public class Background extends GameObject {
@@ -17,6 +16,5 @@ public class Background extends GameObject {
     }
     Background(Bitmap image) {
         super(image);
-
     }
 }

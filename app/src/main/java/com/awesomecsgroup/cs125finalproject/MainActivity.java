@@ -42,5 +42,14 @@ public class MainActivity extends AppCompatActivity {
         super.onPause();
         mediaPlayer.stop();
         mediaPlayer.release();
+        mediaPlayer = null;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.menu_music);
+        mediaPlayer.setLooping(true);
+        mediaPlayer.start();
     }
 }

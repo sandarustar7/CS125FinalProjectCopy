@@ -7,6 +7,7 @@ import android.graphics.BitmapRegionDecoder;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -14,13 +15,16 @@ import android.view.SurfaceView;
 //Source: https://www.androidauthority.com/android-game-java-785331/
 class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
+    final float SCALE = getResources().getDisplayMetrics().density;
+    static float HEIGHT_PX;
+    static float WIDTH_PX;
+    static float HEIGHT_DP;
+    static float WIDTH_DP;
+
     RenderThread thread;
     Square square;
     Background background;
     Challen challen;
-    Paint paint;
-    ValueAnimator animator = ValueAnimator.ofInt(0, 100);
-    int value;
 
     public GameView(Context ctx) {
         super(ctx);
@@ -39,7 +43,7 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     public void update() {
-
+        challen.update();
     }
 
     @Override
@@ -49,6 +53,9 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
+        Rect dimensions = holder.getSurfaceFrame();
+        HEIGHT_PX = dimensions.bottom;
+        WIDTH_PX = dimensions.right;
         square = new Square(null);
         background = new Background(BitmapFactory.decodeResource(getResources(),R.drawable.foellinger_auditorium_front));
         challen = new Challen(BitmapFactory.decodeResource(getResources(),R.drawable.angry_challen));
@@ -71,4 +78,10 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
             retry = false;
         }
     }
+
+    public float getSCALE() {
+        return SCALE;
+    }
+
+
 }
