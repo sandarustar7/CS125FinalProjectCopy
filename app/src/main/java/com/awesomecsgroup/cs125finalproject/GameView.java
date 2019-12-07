@@ -33,6 +33,7 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
         super.draw(canvas);
         if (canvas != null) {
             Log.d("GAME", "true!");
+            background.draw(canvas);
             square.draw(canvas);
         }
     }
@@ -48,8 +49,8 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
-        square = new Square(BitmapFactory.decodeResource(getResources(), R.drawable.background));
-        background = new Background(BitmapFactory.decodeResource(getResources(),R.drawable.background));
+        square = new Square(null);
+        background = new Background(BitmapFactory.decodeResource(getResources(),R.drawable.foellinger_auditorium_front));
         thread.setRunning(true);
         thread.start();
         Log.d("GAME", "thread started!");
