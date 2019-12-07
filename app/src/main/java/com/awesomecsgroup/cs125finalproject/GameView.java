@@ -53,9 +53,7 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
-        Rect dimensions = holder.getSurfaceFrame();
-        HEIGHT_PX = dimensions.bottom;
-        WIDTH_PX = dimensions.right;
+
         square = new Square(null);
         background = new Background(BitmapFactory.decodeResource(getResources(),R.drawable.foellinger_auditorium_front));
         challen = new Challen(BitmapFactory.decodeResource(getResources(),R.drawable.angry_challen));
@@ -79,9 +77,8 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
         }
     }
 
-    public float getSCALE() {
-        return SCALE;
+    public static int DptoPx(float dp, float scale) {
+      return (int) (dp * scale);
     }
-
 
 }

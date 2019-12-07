@@ -6,28 +6,25 @@ import android.graphics.Rect;
 
 public class Challen extends GameObject {
 
-    int centerXDP = 500;
-    int centerYDP = 500;
-    int scale = 10;
-    int left = centerXDP - (image.getWidth() / (scale * 2));
-    int right = centerXDP + (image.getWidth() / (scale * 2));
-    int up = centerYDP - (image.getHeight() / (scale * 2));
-    int down = centerYDP + (image.getHeight() / (scale * 2));
+    int centerX = 500;
+    int centerY = 500;
+    int imageScale = 20;
+    int left = centerX - (image.getWidth() / (imageScale * 2));
+    int right =  centerX + (image.getWidth() / (imageScale * 2));
+    int up = centerY - (image.getHeight() / (imageScale * 2));
+    int down = centerY + (image.getHeight() / (imageScale * 2));
 
     @Override
     void draw(Canvas canvas) {
-        //canvas.drawBitmap(image, new Rect(0,0,image.getWidth(),image.getHeight()), new Rect(left, up, right, down), null);
+        canvas.drawBitmap(image, new Rect(0,0,image.getWidth(),image.getHeight()), new Rect(left, up, right, down), null);
     }
 
     @Override
     void update() {
-        /*
-        left = centerX - (image.getWidth() / (scale * 2));
-        right = centerX + (image.getWidth() / (scale * 2));
-        up = centerY - (image.getHeight() / (scale * 2));
-        down = centerY + (image.getHeight() / (scale * 2));
-
-         */
+        left = centerX - (image.getWidth() / (imageScale * 2));
+        right =  centerX + (image.getWidth() / (imageScale * 2));
+        up = centerY - (image.getHeight() / (imageScale * 2));
+        down = centerY + (image.getHeight() / (imageScale * 2));
     }
     Challen(Bitmap image) {
         super(image);
