@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.menu_music);
+        mediaPlayer.setLooping(true);
         mediaPlayer.start();
 
         Button startGame = findViewById(R.id.startGame);
