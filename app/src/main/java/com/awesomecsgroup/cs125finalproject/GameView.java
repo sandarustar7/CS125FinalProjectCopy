@@ -32,7 +32,6 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
         super.draw(canvas);
         if (canvas != null) {
-            Log.d("GAME", "true!");
             background.draw(canvas);
             square.draw(canvas);
         }
