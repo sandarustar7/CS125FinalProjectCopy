@@ -16,9 +16,7 @@ public class Background extends GameObject {
 
     }
     Background(Bitmap image) {
-        super(null);
-        Matrix matrix = new Matrix();
-        matrix.postRotate(90);
-        this.image = Bitmap.createBitmap(image, 0, 0, image.getWidth(),image.getHeight(), matrix, true);
+        super(image);
+
     }
 }
