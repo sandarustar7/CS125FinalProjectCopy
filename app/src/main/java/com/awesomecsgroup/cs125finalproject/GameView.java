@@ -16,10 +16,10 @@ import android.view.SurfaceView;
 class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     final float SCALE = getResources().getDisplayMetrics().density;
-    static float HEIGHT_PX;
-    static float WIDTH_PX;
-    static float HEIGHT_DP;
-    static float WIDTH_DP;
+    static int HEIGHT_PX;
+    static int WIDTH_PX;
+    //static float HEIGHT_DP;
+    //static float WIDTH_DP;
 
     RenderThread thread;
     Square square;
@@ -53,7 +53,9 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
-
+        Rect dimensions = holder.getSurfaceFrame();
+        WIDTH_PX = dimensions.right;
+        HEIGHT_PX = dimensions.bottom;
         square = new Square(null);
         background = new Background(BitmapFactory.decodeResource(getResources(),R.drawable.foellinger_auditorium_front));
         challen = new Challen(BitmapFactory.decodeResource(getResources(),R.drawable.angry_challen));

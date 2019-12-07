@@ -6,13 +6,14 @@ import android.graphics.Rect;
 
 public class Challen extends GameObject {
 
-    int centerX = 500;
-    int centerY = 500;
-    int imageScale = 20;
-    int left = centerX - (image.getWidth() / (imageScale * 2));
-    int right =  centerX + (image.getWidth() / (imageScale * 2));
-    int up = centerY - (image.getHeight() / (imageScale * 2));
-    int down = centerY + (image.getHeight() / (imageScale * 2));
+    private int imageScale = 15;
+    private int centerX = GameView.WIDTH_PX/2;
+    private int centerY = GameView.HEIGHT_PX - (image.getHeight() / (imageScale * 2));
+
+    private int left = centerX - (image.getWidth() / (imageScale * 2));
+    private int right =  centerX + (image.getWidth() / (imageScale * 2));
+    private int up = centerY - (image.getHeight() / (imageScale * 2));
+    private int down = centerY + (image.getHeight() / (imageScale * 2));
 
     @Override
     void draw(Canvas canvas) {
@@ -21,10 +22,13 @@ public class Challen extends GameObject {
 
     @Override
     void update() {
+        /*
         left = centerX - (image.getWidth() / (imageScale * 2));
         right =  centerX + (image.getWidth() / (imageScale * 2));
         up = centerY - (image.getHeight() / (imageScale * 2));
         down = centerY + (image.getHeight() / (imageScale * 2));
+
+         */
     }
     Challen(Bitmap image) {
         super(image);
