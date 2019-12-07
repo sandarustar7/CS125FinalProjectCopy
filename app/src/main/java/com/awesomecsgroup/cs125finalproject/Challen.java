@@ -33,4 +33,12 @@ public class Challen extends GameObject {
     Challen(Bitmap image) {
         super(image);
     }
+
+    public int getCenterX() {
+        return centerX;
+    }
+
+    public int getCenterY() {
+        return centerY;
+    }
 }
