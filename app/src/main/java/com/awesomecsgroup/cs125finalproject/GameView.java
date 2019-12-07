@@ -17,6 +17,7 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
     RenderThread thread;
     Square square;
     Background background;
+    Challen challen;
     Paint paint;
     ValueAnimator animator = ValueAnimator.ofInt(0, 100);
     int value;
@@ -33,7 +34,7 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
         super.draw(canvas);
         if (canvas != null) {
             background.draw(canvas);
-            square.draw(canvas);
+            challen.draw(canvas);
         }
     }
 
@@ -50,6 +51,7 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
     public void surfaceCreated(SurfaceHolder holder) {
         square = new Square(null);
         background = new Background(BitmapFactory.decodeResource(getResources(),R.drawable.foellinger_auditorium_front));
+        challen = new Challen(BitmapFactory.decodeResource(getResources(),R.drawable.angry_challen));
         thread.setRunning(true);
         thread.start();
         Log.d("GAME", "thread started!");
@@ -57,6 +59,16 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
+        boolean retry = true;
+        while (retry) {
+            try {
+                thread.setRunning(false);
+                thread.join();
 
+            } catch(InterruptedException e){
+                e.printStackTrace();
+            }
+            retry = false;
+        }
     }
 }

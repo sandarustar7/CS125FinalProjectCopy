@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, OptionsActivity.class);
             startActivity(intent);
         });
-
     }
 
     @Override
