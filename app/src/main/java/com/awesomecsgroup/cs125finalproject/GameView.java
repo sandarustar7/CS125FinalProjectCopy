@@ -11,8 +11,11 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Rect;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+
+import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -111,4 +114,20 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
         thread.setRunning(running);
     }
 
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        if ((event.getAction() & MotionEvent.ACTION_MASK) == MotionEvent.ACTION_DOWN) {
+            float x = event.getX();
+            float y = event.getY();
+            squares.stream().filter(s -> s.isTapped(x,y)).forEach(s -> s.paint.setColor(Color.rgb(0,0,250)));
+
+            /*squares.forEach(square -> {
+                if (square.isTapped(x, y)) {
+                    square.paint.setColor(Color.rgb(0,0,250));
+                }
+            });*/
+            Log.d("GameView", x + ", " + y);
+        }
+        return super.onTouchEvent(event);
+    }
 }

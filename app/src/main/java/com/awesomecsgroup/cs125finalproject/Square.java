@@ -15,6 +15,7 @@ public class Square extends GameObject {
     int centerY;
     int height = 100;
     int width = 200;
+    float radius = 100;
 
     int left;
     int up;
@@ -62,6 +63,10 @@ public class Square extends GameObject {
         right = centerX + width/2;
         bottom = centerY + height/2;
 
+    }
+
+    public boolean isTapped(float x, float y) {
+        return Math.sqrt((this.centerX - x)*(this.centerX - x)+(this.centerY - y)*(this.centerY - y)) < radius;
     }
 
     public void setCenterX(float centerX) {
