@@ -45,13 +45,25 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
         }
     }
 
-    int testX = 100;
+    int testX = 800;
     int testY = 100;
+    int secondsToMove = 3;
+    int framesToMove = secondsToMove * 60;
     public void update() {
-        testX++;
-        testY++;
+        int challenY = challen.getCenterY();
+        int challenX = challen.getCenterX();
+        int squareY = square.getCenterY();
+        int squareX = square.getCenterX();
 
-        //int slope = (challenY-squareY)/(challenX-squareX);
+        double theta = Math.atan2((challenY-squareY),(challenX-squareX));
+
+        testX += 5*Math.cos(theta);
+        testY += 5*Math.sin(theta);
+
+//        testX++;
+  //      testY++;
+
+        double slope = ((float)(challenY-squareY))/(challenX-squareX);
 
         square.update(testX, testY);
     }
@@ -76,7 +88,8 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
         thread.start();
 
         Log.d("GAME", "thread started!");
-        /*Path squarePath = new Path();
+        /*
+        Path squarePath = new Path();
         squarePath.moveTo(square.getCenterX(), square.getCenterY());
         squarePath.lineTo(challen.getCenterX(),challen.getCenterY());
         pathAnimator = ObjectAnimator.ofFloat(square, "centerX", "centerY", squarePath);

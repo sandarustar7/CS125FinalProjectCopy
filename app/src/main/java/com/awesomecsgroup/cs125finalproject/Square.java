@@ -9,8 +9,8 @@ import android.util.Log;
 
 public class Square extends GameObject {
 
-    int centerX = 700;
-    int centerY = 700;
+    int centerX = 100;
+    int centerY = 100;
     int height = 100;
     int width = 200;
 
