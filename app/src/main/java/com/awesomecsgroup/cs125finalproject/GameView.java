@@ -65,9 +65,9 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
         Rect dimensions = holder.getSurfaceFrame();
         WIDTH_PX = dimensions.right;
         HEIGHT_PX = dimensions.bottom;
-        squares.add(new Square(null));
-        squares.add(new Square(null));
-        squares.add(new Square(null));
+        squares.add(new Square(BitmapFactory.decodeResource(getResources(),R.drawable.a_grade)));
+        squares.add(new Square(BitmapFactory.decodeResource(getResources(),R.drawable.a_grade)));
+        squares.add(new Square(BitmapFactory.decodeResource(getResources(),R.drawable.a_grade)));
         background = new Background(BitmapFactory.decodeResource(getResources(),R.drawable.foellinger_auditorium_front));
         challen = new Challen(BitmapFactory.decodeResource(getResources(),R.drawable.angry_challen));
 
@@ -119,7 +119,7 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
         if ((event.getAction() & MotionEvent.ACTION_MASK) == MotionEvent.ACTION_DOWN) {
             float x = event.getX();
             float y = event.getY();
-            squares.stream().filter(s -> s.isTapped(x,y)).forEach(s -> s.paint.setColor(Color.rgb(0,0,250)));
+            squares.stream().filter(s -> s.isTapped(x,y)).forEach(s -> s.resetPosition());
 
             /*squares.forEach(square -> {
                 if (square.isTapped(x, y)) {

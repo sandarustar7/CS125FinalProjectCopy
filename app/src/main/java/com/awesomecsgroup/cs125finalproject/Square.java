@@ -13,20 +13,17 @@ public class Square extends GameObject {
 
     int centerX;
     int centerY;
-    int height = 100;
-    int width = 200;
-    float radius = 100;
-
+    float radius;
+    private int imageScale = 15;
     int left;
     int up;
     int right;
     int bottom;
 
-    Rect rect = new Rect(left, up, right, bottom);
-    Paint paint = new Paint();
+    //Rect rect = new Rect(left, up, right, bottom);
 
     public void draw(Canvas canvas) {
-        canvas.drawRect(rect, paint);
+        canvas.drawBitmap(image, new Rect(0,0,image.getWidth(),image.getHeight()), new Rect(left, up, right, bottom), null);
     }
 
     public void update(int challenX, int challenY) {
@@ -35,11 +32,14 @@ public class Square extends GameObject {
         centerX += 5*Math.cos(theta);
         centerY += 5*Math.sin(theta);
 
-        rect.set(centerX - width/2,centerY - height/2,centerX + width/2,bottom = centerY + height/2);
+        left = centerX - (image.getWidth() / (imageScale * 2));
+        right =  centerX + (image.getWidth() / (imageScale * 2));
+        up = centerY - (image.getHeight() / (imageScale * 2));
+        bottom = centerY + (image.getHeight() / (imageScale * 2));
     }
 
     public Square(Bitmap image) {
-        super(null);
+        super(image);
         Random rng = new Random(new Random().nextLong());
         centerY = 0;
         centerX = 0;
@@ -55,18 +55,38 @@ public class Square extends GameObject {
                 centerY = rng.nextInt(GameView.HEIGHT_PX);
                 break;
         }
-
-        paint.setColor(Color.rgb(250,0,0));
-
-        left = centerX - width/2;
-        up = centerY - height/2;
-        right = centerX + width/2;
-        bottom = centerY + height/2;
+        radius = (image.getWidth())/(imageScale * 2);
+        left = centerX - (image.getWidth() / (imageScale * 2));
+        right =  centerX + (image.getWidth() / (imageScale * 2));
+        up = centerY - (image.getHeight() / (imageScale * 2));
+        bottom = centerY + (image.getHeight() / (imageScale * 2));
 
     }
 
     public boolean isTapped(float x, float y) {
         return Math.sqrt((this.centerX - x)*(this.centerX - x)+(this.centerY - y)*(this.centerY - y)) < radius;
+    }
+
+    public void resetPosition() {
+        Random rng = new Random(new Random().nextLong());
+        centerY = 0;
+        centerX = 0;
+        switch (rng.nextInt(3)) {
+            case 0:
+                centerY = rng.nextInt(GameView.HEIGHT_PX);
+                break;
+            case 1:
+                centerX = rng.nextInt(GameView.WIDTH_PX);
+                break;
+            case 2:
+                centerX = GameView.WIDTH_PX;
+                centerY = rng.nextInt(GameView.HEIGHT_PX);
+                break;
+        }
+        left = centerX - (image.getWidth() / (imageScale * 2));
+        right =  centerX + (image.getWidth() / (imageScale * 2));
+        up = centerY - (image.getHeight() / (imageScale * 2));
+        bottom = centerY + (image.getHeight() / (imageScale * 2));
     }
 
     public void setCenterX(float centerX) {
