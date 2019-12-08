@@ -11,7 +11,7 @@ public class Background extends GameObject {
     }
 
     @Override
-    void update() {
+    void update(int x, int y) {
 
     }
     Background(Bitmap image) {

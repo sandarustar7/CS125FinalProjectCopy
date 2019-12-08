@@ -14,6 +14,9 @@ import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 //Source: https://www.androidauthority.com/android-game-java-785331/
 class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
@@ -21,17 +24,14 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
     static int HEIGHT_PX;
     static int WIDTH_PX;
 
-    RenderThread thread;
-    Square square;
+    static RenderThread thread;
     Background background;
     Challen challen;
-
-    ValueAnimator pathAnimator;
+    List<Square> squares = new ArrayList<>();
 
     public GameView(Context ctx) {
         super(ctx);
         getHolder().addCallback(this);
-        thread = new RenderThread(getHolder(), this);
         setFocusable(true);
     }
 
@@ -41,31 +41,13 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
         if (canvas != null) {
             background.draw(canvas);
             challen.draw(canvas);
-            square.draw(canvas);
+            squares.forEach(square -> square.draw(canvas));
         }
     }
 
-    int testX = 800;
-    int testY = 100;
-    int secondsToMove = 3;
-    int framesToMove = secondsToMove * 60;
+
     public void update() {
-        int challenY = challen.getCenterY();
-        int challenX = challen.getCenterX();
-        int squareY = square.getCenterY();
-        int squareX = square.getCenterX();
-
-        double theta = Math.atan2((challenY-squareY),(challenX-squareX));
-
-        testX += 5*Math.cos(theta);
-        testY += 5*Math.sin(theta);
-
-//        testX++;
-  //      testY++;
-
-        double slope = ((float)(challenY-squareY))/(challenX-squareX);
-
-        square.update(testX, testY);
+        squares.forEach(square -> square.update(challen.getCenterX(), challen.getCenterY()));
     }
 
 
@@ -76,11 +58,13 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
+        thread = new RenderThread(getHolder(), this);
         Rect dimensions = holder.getSurfaceFrame();
         WIDTH_PX = dimensions.right;
         HEIGHT_PX = dimensions.bottom;
-
-        square = new Square(null);
+        squares.add(new Square(null));
+        squares.add(new Square(null));
+        squares.add(new Square(null));
         background = new Background(BitmapFactory.decodeResource(getResources(),R.drawable.foellinger_auditorium_front));
         challen = new Challen(BitmapFactory.decodeResource(getResources(),R.drawable.angry_challen));
 
@@ -104,17 +88,27 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
         while (retry) {
             try {
                 thread.setRunning(false);
+                /*new Thread() {
+                    @Override
+                    public void run() {
+                        while(!);
+                        thread.setRunning(false);
+                    }
+                }.run(); */
                 thread.join();
-
+                retry = false;
             } catch(InterruptedException e){
                 e.printStackTrace();
             }
-            retry = false;
         }
     }
 
     public static int DptoPx(float dp, float scale) {
       return (int) (dp * scale);
+    }
+
+    public static void setThreadRunning(boolean running) {
+        thread.setRunning(running);
     }
 
 }

@@ -25,7 +25,6 @@ public class RenderThread extends Thread {
 
     @Override
     public void run() {
-
             long startTime;
             long timeMillis;
             long waitTime;

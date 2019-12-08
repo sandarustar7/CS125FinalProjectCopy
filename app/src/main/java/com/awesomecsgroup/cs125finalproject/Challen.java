@@ -21,7 +21,7 @@ public class Challen extends GameObject {
     }
 
     @Override
-    void update() {
+    void update(int x, int y) {
         /*
         left = centerX - (image.getWidth() / (imageScale * 2));
         right =  centerX + (image.getWidth() / (imageScale * 2));

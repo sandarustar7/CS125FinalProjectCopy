@@ -8,7 +8,7 @@ public class LetterA extends GameObject {
     void draw(Canvas canvas) {
         canvas.drawBitmap(image, 100, 100, null);
     }
-    void update(){}
+    void update(int x, int y){}
     LetterA(Bitmap image) {
         super(image);
     }

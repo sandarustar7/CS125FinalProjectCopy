@@ -2,9 +2,11 @@ package com.awesomecsgroup.cs125finalproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.media.PlaybackParams;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -28,7 +30,22 @@ public class GameActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
+        Log.v("GameActivity", "pause");
+        GameView.setThreadRunning(false);
+        try {
+            GameView.thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         mediaPlayer.stop();
         mediaPlayer.release();
+        finish();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        GameView.setThreadRunning(false);
+        Log.v("GameActivity", "stop");
     }
 }
