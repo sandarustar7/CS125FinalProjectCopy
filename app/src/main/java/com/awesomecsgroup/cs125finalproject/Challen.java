@@ -15,6 +15,8 @@ public class Challen extends GameObject {
     private int up = centerY - (image.getHeight() / (imageScale * 2));
     private int down = centerY + (image.getHeight() / (imageScale * 2));
 
+    private Rect hitbox = new Rect(left, up, right , down);
+
     @Override
     void draw(Canvas canvas) {
         canvas.drawBitmap(image, new Rect(0,0,image.getWidth(),image.getHeight()), new Rect(left, up, right, down), null);
@@ -40,5 +42,9 @@ public class Challen extends GameObject {
 
     public int getCenterY() {
         return centerY;
+    }
+
+    public Rect getHitbox() {
+        return hitbox;
     }
 }

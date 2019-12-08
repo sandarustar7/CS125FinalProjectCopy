@@ -1,21 +1,14 @@
 package com.awesomecsgroup.cs125finalproject;
 
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.BitmapFactory;
-import android.graphics.BitmapRegionDecoder;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Path;
 import android.graphics.Rect;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-
-import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,10 +23,14 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
     static RenderThread thread;
     Background background;
     Challen challen;
-    List<Square> squares = new ArrayList<>();
+    GameActivity context;
+    List<LetterA> letterAs = new ArrayList<>();
+    private int lives = 3;
+    private int score = 0;
 
     public GameView(Context ctx) {
         super(ctx);
+        context =(GameActivity) ctx;
         getHolder().addCallback(this);
         setFocusable(true);
     }
@@ -44,13 +41,20 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
         if (canvas != null) {
             background.draw(canvas);
             challen.draw(canvas);
-            squares.forEach(square -> square.draw(canvas));
+            letterAs.forEach(square -> square.draw(canvas));
         }
     }
 
 
     public void update() {
-        squares.forEach(square -> square.update(challen.getCenterX(), challen.getCenterY()));
+        letterAs.stream().filter(square -> square.collision(challen.getHitbox())).forEach(letter -> {letter.resetPosition(); lives--;});
+        letterAs.forEach(square -> square.update(challen.getCenterX(), challen.getCenterY()));
+        if (lives <= 0) {
+            Intent intent = new Intent(context, GameOverActivity.class);
+            intent.putExtra("score", score);
+            context.startActivity(intent);
+            context.finish();
+        }
     }
 
 
@@ -65,9 +69,9 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
         Rect dimensions = holder.getSurfaceFrame();
         WIDTH_PX = dimensions.right;
         HEIGHT_PX = dimensions.bottom;
-        squares.add(new Square(BitmapFactory.decodeResource(getResources(),R.drawable.a_grade)));
-        squares.add(new Square(BitmapFactory.decodeResource(getResources(),R.drawable.a_grade)));
-        squares.add(new Square(BitmapFactory.decodeResource(getResources(),R.drawable.a_grade)));
+        letterAs.add(new LetterA(BitmapFactory.decodeResource(getResources(),R.drawable.a_grade)));
+        letterAs.add(new LetterA(BitmapFactory.decodeResource(getResources(),R.drawable.a_grade)));
+        letterAs.add(new LetterA(BitmapFactory.decodeResource(getResources(),R.drawable.a_grade)));
         background = new Background(BitmapFactory.decodeResource(getResources(),R.drawable.foellinger_auditorium_front));
         challen = new Challen(BitmapFactory.decodeResource(getResources(),R.drawable.angry_challen));
 
@@ -119,9 +123,9 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
         if ((event.getAction() & MotionEvent.ACTION_MASK) == MotionEvent.ACTION_DOWN) {
             float x = event.getX();
             float y = event.getY();
-            squares.stream().filter(s -> s.isTapped(x,y)).forEach(s -> s.resetPosition());
+            letterAs.stream().filter(s -> s.isTapped(x,y)).forEach(s -> {s.resetPosition(); score++;});
 
-            /*squares.forEach(square -> {
+            /*letterAs.forEach(square -> {
                 if (square.isTapped(x, y)) {
                     square.paint.setColor(Color.rgb(0,0,250));
                 }
