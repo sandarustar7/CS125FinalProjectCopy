@@ -11,22 +11,28 @@
         android:id="@+id/replaybtn"
         android:layout_width="102dp"
         android:layout_height="55dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginBottom="48dp"
         android:text="Replay"
-        tools:layout_editor_absoluteX="250dp"
-        tools:layout_editor_absoluteY="629dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/homebtn"
         android:layout_width="105dp"
         android:layout_height="55dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginBottom="48dp"
         android:text="Home"
-        tools:layout_editor_absoluteX="45dp"
-        tools:layout_editor_absoluteY="629dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/scoreview"
-        android:layout_width="193dp"
-        android:layout_height="52dp"
-        tools:layout_editor_absoluteX="102dp"
-        tools:layout_editor_absoluteY="55dp" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

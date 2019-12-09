@@ -139,7 +139,5 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
     public int getScore() {
         return score;
     }
-    String scr = String.valueOf(score);
-    TextView scoreview1 =(TextView) findViewById(R.id.scoreview);
-    scoreview1.setText(scr);
+
 }
