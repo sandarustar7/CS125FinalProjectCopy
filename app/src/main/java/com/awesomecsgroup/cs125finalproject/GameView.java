@@ -80,14 +80,6 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
         thread.start();
 
         Log.d("GAME", "thread started!");
-        /*
-        Path squarePath = new Path();
-        squarePath.moveTo(square.getCenterX(), square.getCenterY());
-        squarePath.lineTo(challen.getCenterX(),challen.getCenterY());
-        pathAnimator = ObjectAnimator.ofFloat(square, "centerX", "centerY", squarePath);
-        pathAnimator.setDuration(1000);
-        pathAnimator.setRepeatCount(100);
-        pathAnimator.start();*/
     }
 
     @Override
@@ -96,13 +88,6 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
         while (retry) {
             try {
                 thread.setRunning(false);
-                /*new Thread() {
-                    @Override
-                    public void run() {
-                        while(!);
-                        thread.setRunning(false);
-                    }
-                }.run(); */
                 thread.join();
                 retry = false;
             } catch(InterruptedException e){
