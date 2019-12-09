@@ -7,4 +7,26 @@
     android:background="@drawable/game_over"
     tools:context="com.awesomecsgroup.cs125finalproject.GameOverActivity">
 
+    <Button
+        android:id="@+id/replaybtn"
+        android:layout_width="102dp"
+        android:layout_height="55dp"
+        android:text="Replay"
+        tools:layout_editor_absoluteX="250dp"
+        tools:layout_editor_absoluteY="629dp" />
+
+    <Button
+        android:id="@+id/homebtn"
+        android:layout_width="105dp"
+        android:layout_height="55dp"
+        android:text="Home"
+        tools:layout_editor_absoluteX="45dp"
+        tools:layout_editor_absoluteY="629dp" />
+
+    <TextView
+        android:id="@+id/scoreview"
+        android:layout_width="193dp"
+        android:layout_height="52dp"
+        tools:layout_editor_absoluteX="102dp"
+        tools:layout_editor_absoluteY="55dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

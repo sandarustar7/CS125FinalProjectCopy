@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -134,4 +135,11 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
         }
         return super.onTouchEvent(event);
     }
+
+    public int getScore() {
+        return score;
+    }
+    String scr = String.valueOf(score);
+    TextView scoreview1 =(TextView) findViewById(R.id.scoreview);
+    scoreview1.setText(scr);
 }
