@@ -22,14 +22,17 @@ public class GameActivity extends AppCompatActivity {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(new GameView(this));
 
-        mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.game_music);
+        /*mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.game_music);
         mediaPlayer.setLooping(true);
-        mediaPlayer.start();
+        mediaPlayer.start();*/
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+        mediaPlayer.stop();
+        mediaPlayer.release();
+        mediaPlayer = null;
         Log.v("GameActivity", "pause");
         GameView.setThreadRunning(false);
         try {
@@ -37,15 +40,13 @@ public class GameActivity extends AppCompatActivity {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        mediaPlayer.stop();
-        mediaPlayer.release();
-        finish();
     }
 
     @Override
-    protected void onStop() {
-        super.onStop();
-        GameView.setThreadRunning(false);
-        Log.v("GameActivity", "stop");
+    protected void onResume() {
+        super.onResume();
+        mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.game_music);
+        mediaPlayer.setLooping(true);
+        mediaPlayer.start();
     }
 }

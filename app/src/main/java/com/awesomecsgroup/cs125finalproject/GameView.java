@@ -28,6 +28,7 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
     List<LetterA> letterAs = new ArrayList<>();
     private int lives = 3;
     private int score = 0;
+    private boolean launched = false;
 
     public GameView(Context ctx) {
         super(ctx);
@@ -50,7 +51,8 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
     public void update() {
         letterAs.stream().filter(square -> square.collision(challen.getHitbox())).forEach(letter -> {letter.resetPosition(); lives--;});
         letterAs.forEach(square -> square.update(challen.getCenterX(), challen.getCenterY()));
-        if (lives <= 0) {
+        if (lives <= 0 && !launched) {
+            launched = true;
             Intent intent = new Intent(context, GameOverActivity.class);
             intent.putExtra("score", score);
             context.startActivity(intent);
@@ -84,6 +86,7 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
+        letterAs.clear();
         boolean retry = true;
         while (retry) {
             try {
