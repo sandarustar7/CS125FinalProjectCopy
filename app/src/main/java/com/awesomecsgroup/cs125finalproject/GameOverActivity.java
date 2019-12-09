@@ -16,7 +16,7 @@ public class GameOverActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game_over);
         gameOver();
         Button home = findViewById(R.id.homebtn);
-        Button game = findViewById(R.id.startGame);
+        Button game = findViewById(R.id.replaybtn);
         home.setOnClickListener(unused -> {
             Intent intent = new Intent(this,MainActivity.class);
             startActivity(intent);
