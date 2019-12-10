@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == 42069) {
             if (resultCode == RESULT_OK) {
                 enemyNumber = data.getIntExtra("enemyNumber", 3);
-                speed = data.getIntExtra("speed", 1);
+                speed = data.getIntExtra("speed", 5);
             }
         }
     }

@@ -30,8 +30,8 @@ public class LetterA extends GameObject {
     public void update(int challenX, int challenY, int speed) {
         double theta = Math.atan2((challenY-centerY),(challenX-centerX));
 
-        centerX += speed*Math.cos(theta);
-        centerY += speed*Math.sin(theta);
+        centerX += (speed >= 5 && speed <= 50 ? speed : 5)*Math.cos(theta);
+        centerY += (speed >= 5 && speed <= 50 ? speed : 5)*Math.sin(theta);
 
         left = centerX - (image.getWidth() / (imageScale * 2));
         right =  centerX + (image.getWidth() / (imageScale * 2));

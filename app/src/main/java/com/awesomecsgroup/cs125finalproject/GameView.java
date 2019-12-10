@@ -39,6 +39,7 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
         setFocusable(true);
         speed = ((GameActivity) ctx).returnIntent().getIntExtra("speed", 5);
         numberEnemies = ((GameActivity) ctx).returnIntent().getIntExtra("enemies", 3);
+        Log.d("GAMEVIEW", " " + speed);
     }
 
     public void draw(Canvas canvas) {
