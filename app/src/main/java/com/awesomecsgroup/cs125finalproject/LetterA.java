@@ -27,16 +27,20 @@ public class LetterA extends GameObject {
         canvas.drawBitmap(image, new Rect(0,0,image.getWidth(),image.getHeight()), new Rect(left, up, right, bottom), null);
     }
 
-    public void update(int challenX, int challenY) {
+    public void update(int challenX, int challenY, int speed) {
         double theta = Math.atan2((challenY-centerY),(challenX-centerX));
 
-        centerX += 5*Math.cos(theta);
-        centerY += 5*Math.sin(theta);
+        centerX += speed*Math.cos(theta);
+        centerY += speed*Math.sin(theta);
 
         left = centerX - (image.getWidth() / (imageScale * 2));
         right =  centerX + (image.getWidth() / (imageScale * 2));
         up = centerY - (image.getHeight() / (imageScale * 2));
         bottom = centerY + (image.getHeight() / (imageScale * 2));
+    }
+
+    public void update(int x, int y) {
+
     }
 
     public LetterA(Bitmap image) {

@@ -51,4 +51,8 @@ public class GameActivity extends AppCompatActivity {
             mediaPlayer.start();
         }
     }
+
+    public Intent returnIntent() {
+        return getIntent();
+    }
 }

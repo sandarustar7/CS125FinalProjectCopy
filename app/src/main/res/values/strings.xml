@@ -4,5 +4,8 @@
     <string name="startGameButton">Start Game</string>
     <string name="Options_Text">Options</string>
     <string name="optionsTitleText">Instructions:</string>
-    <string name="optionsInstructions">Click on the A\'s to turn them into F\'s. Miss three, and you lose! Try to last as long as you can and get a high score.</string>
+    <string name="optionsInstructions">Protect your A\'s by tapping on them before Challen smashes them. Miss three, and you lose! Try to last as long as you can and get a high score.</string>
+    <string name="EnemyHint">Number of Enemies</string>
+    <string name="EnemyTextHint">Enemy Speed</string>
+    <string name="ApplyButton">Apply</string>
 </resources>

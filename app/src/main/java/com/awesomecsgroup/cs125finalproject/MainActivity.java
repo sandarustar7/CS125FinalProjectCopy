@@ -1,5 +1,6 @@
 package com.awesomecsgroup.cs125finalproject;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -12,6 +13,8 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TITLE = "MAIN_ACTIVITY";
     private MediaPlayer mediaPlayer;
+    int speed = 1;
+    int enemyNumber = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,13 +31,15 @@ public class MainActivity extends AppCompatActivity {
         startGame.setOnClickListener(unused -> {
             Log.d(TITLE, "Start Game!");
             Intent intent = new Intent(this, GameActivity.class);
+            intent.putExtra("speed", speed);
+            intent.putExtra("enemies", enemyNumber);
             startActivity(intent);
             finish();
         });
         options.setOnClickListener(unused -> {
             Log.d(TITLE, "OptionsActivity");
             Intent intent = new Intent(this, OptionsActivity.class);
-            startActivity(intent);
+            startActivityForResult(intent, 42069);
         });
     }
 
@@ -53,6 +58,17 @@ public class MainActivity extends AppCompatActivity {
             mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.menu_music);
             mediaPlayer.setLooping(true);
             mediaPlayer.start();
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 42069) {
+            if (resultCode == RESULT_OK) {
+                enemyNumber = data.getIntExtra("enemyNumber", 3);
+                speed = data.getIntExtra("speed", 1);
+            }
         }
     }
 }

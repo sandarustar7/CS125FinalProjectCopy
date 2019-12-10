@@ -29,12 +29,16 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
     private int lives = 3;
     private int score = 0;
     private boolean launched = false;
+    private int speed;
+    private int numberEnemies;
 
     public GameView(Context ctx) {
         super(ctx);
         context =(GameActivity) ctx;
         getHolder().addCallback(this);
         setFocusable(true);
+        speed = ((GameActivity) ctx).returnIntent().getIntExtra("speed", 5);
+        numberEnemies = ((GameActivity) ctx).returnIntent().getIntExtra("enemies", 3);
     }
 
     public void draw(Canvas canvas) {
@@ -47,10 +51,9 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
         }
     }
 
-
     public void update() {
         letterAs.stream().filter(square -> square.collision(challen.getHitbox())).forEach(letter -> {letter.resetPosition(); lives--;});
-        letterAs.forEach(square -> square.update(challen.getCenterX(), challen.getCenterY()));
+        letterAs.forEach(square -> square.update(challen.getCenterX(), challen.getCenterY(), speed));
         if (lives <= 0 && !launched) {
             launched = true;
             Intent intent = new Intent(context, GameOverActivity.class);
@@ -71,9 +74,9 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
         Rect dimensions = holder.getSurfaceFrame();
         WIDTH_PX = dimensions.right;
         HEIGHT_PX = dimensions.bottom;
-        letterAs.add(new LetterA(BitmapFactory.decodeResource(getResources(),R.drawable.a_grade)));
-        letterAs.add(new LetterA(BitmapFactory.decodeResource(getResources(),R.drawable.a_grade)));
-        letterAs.add(new LetterA(BitmapFactory.decodeResource(getResources(),R.drawable.a_grade)));
+        for (int i = 0; i < numberEnemies; i++) {
+            letterAs.add(new LetterA(BitmapFactory.decodeResource(getResources(),R.drawable.a_grade)));
+        }
         background = new Background(BitmapFactory.decodeResource(getResources(),R.drawable.foellinger_auditorium_front));
         challen = new Challen(BitmapFactory.decodeResource(getResources(),R.drawable.angry_challen));
 
