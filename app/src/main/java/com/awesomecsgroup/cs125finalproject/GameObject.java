@@ -4,6 +4,8 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
 public abstract class GameObject {
+    //Abstract class that contains information most GameObjects need: an image, an update function, and a draw function.
+    //Problem: Classes can have different update implementations, and I don't know how to support different method signatures.
     Bitmap image;
 
     abstract void draw(Canvas canvas);

@@ -11,23 +11,22 @@ import android.view.Window;
 import android.view.WindowManager;
 
 public class GameActivity extends AppCompatActivity {
-
+    //GameActivity is essentially a wrapper class for GameView, but also handles the music for the game.
     private MediaPlayer mediaPlayer = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //Lets make the app fullscreen, remove the title, and set the content to be the GameView.
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(new GameView(this));
 
-        /*mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.game_music);
-        mediaPlayer.setLooping(true);
-        mediaPlayer.start();*/
     }
 
     @Override
+    //Pause music, end the rendering thread.
     protected void onPause() {
         super.onPause();
         mediaPlayer.stop();
@@ -44,6 +43,7 @@ public class GameActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
+        //Resume the music, assume thread is started by surfaceCreated.
         super.onResume();
         if (mediaPlayer == null) {
             mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.game_music);
@@ -53,6 +53,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public Intent returnIntent() {
+        //Returns intent for extra-getting.
         return getIntent();
     }
 }

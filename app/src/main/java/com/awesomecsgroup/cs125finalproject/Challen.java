@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Rect;
 
 public class Challen extends GameObject {
+    //Class for Geoff, scales image down and contains position information. Geoff is represented by a rectangular hitbox.
 
     private int imageScale = 15;
     private int centerX = GameView.WIDTH_PX/2;
@@ -24,13 +25,7 @@ public class Challen extends GameObject {
 
     @Override
     void update(int x, int y) {
-        /*
-        left = centerX - (image.getWidth() / (imageScale * 2));
-        right =  centerX + (image.getWidth() / (imageScale * 2));
-        up = centerY - (image.getHeight() / (imageScale * 2));
-        down = centerY + (image.getHeight() / (imageScale * 2));
 
-         */
     }
     Challen(Bitmap image) {
         super(image);
