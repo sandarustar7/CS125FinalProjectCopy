@@ -12,7 +12,7 @@ import android.view.WindowManager;
 
 public class GameActivity extends AppCompatActivity {
 
-    private MediaPlayer mediaPlayer;
+    private MediaPlayer mediaPlayer = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +45,10 @@ public class GameActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.game_music);
-        mediaPlayer.setLooping(true);
-        mediaPlayer.start();
+        if (mediaPlayer == null) {
+            mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.game_music);
+            mediaPlayer.setLooping(true);
+            mediaPlayer.start();
+        }
     }
 }

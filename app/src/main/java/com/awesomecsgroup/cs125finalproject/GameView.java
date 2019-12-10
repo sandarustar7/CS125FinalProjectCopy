@@ -60,7 +60,6 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
         }
     }
 
-
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
 
@@ -87,6 +86,7 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
         letterAs.clear();
+        score = 0;
         boolean retry = true;
         while (retry) {
             try {
