@@ -24,6 +24,8 @@ public class GameOverActivity extends AppCompatActivity {
         });
         game.setOnClickListener(unused -> {
             Intent intent = new Intent(this, GameActivity.class);
+            intent.putExtra("speed", getIntent().getIntExtra("speed", 5));
+            intent.putExtra("enemies", getIntent().getIntExtra("enemies", 3));
             startActivity(intent);
             finish();
         });

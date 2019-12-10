@@ -23,8 +23,16 @@ public class OptionsActivity extends AppCompatActivity {
     public void buttonPress() {
         EditText numEnemies = findViewById(R.id.EnemyNumberBox);
         EditText enemySpeed = findViewById(R.id.EnemySpeedBox);
-        int enemies = Integer.parseInt(numEnemies.getText().toString());
-        int speed = Integer.parseInt(enemySpeed.getText().toString());
+        int enemies = 3;
+        int speed = 5;
+        try {
+            enemies = Integer.parseInt(numEnemies.getText().toString());
+            speed = Integer.parseInt(enemySpeed.getText().toString());
+        } catch (NumberFormatException e) {
+            Toast toast = Toast.makeText(this, "Please put an input", Toast.LENGTH_SHORT);
+            toast.show();
+            return;
+        }
         if (enemies > 30 || enemies < 3 || speed > 50 || speed < 5) {
             Toast toast = Toast.makeText(this, "Invalid Input", Toast.LENGTH_SHORT);
             toast.show();
